@@ -55,7 +55,7 @@ function App() {
   }
 
   useEffect(() => {
-    if (loadFromLocalStorage('listAmount').length !== 0) {
+    if (loadFromLocalStorage('listAmount') !== null && loadFromLocalStorage('listAmount').length !== 0) {
       setTotalAmount(loadFromLocalStorage('totalAmount'));
       setListAmount(loadFromLocalStorage('listAmount'));
     }
