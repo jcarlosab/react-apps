@@ -68,7 +68,7 @@ function App() {
   }, [listAmount, totalAmount]);
 
   return (
-    <div> 
+    <div className='main'> 
       <Tabs category={category} setCategory={setCategory} />
       {
         category === 'historical' 
