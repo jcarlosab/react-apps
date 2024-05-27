@@ -23,7 +23,7 @@ function App() {
     const date = new Date();
 
     const item = {
-      id: listAmount.length + 1,
+      id: parseInt(Date.now() * Math.random()),
       date: date.toLocaleDateString(),
       amount: inputValue,
       month: getNameMonth(),
