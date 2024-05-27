@@ -44,6 +44,7 @@
   margin-right: 1rem;
   font-size: large;
   padding: 0.75rem;
+  appearance: textfield !important;
   -webkit-appearance: textfield !important;
   -moz-appearance:textfield !important;
 }
@@ -66,21 +67,42 @@
   background-color: var(--terceary-color);
 }
 
-.header-expense {
-  display: flex;
+.table-expenses {
+  margin-top: 2rem;
 }
 
-.expense {
+.header-table {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0.5rem;
+  color: var(--main-bg-color);
+  font-weight: bold;
+  margin: 0 2rem;
+}
+
+.table div {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.25rem;
+}
+
+.table {
+  display: flex;
+  flex-direction: column-reverse;
+  background-color: var(--main-bg-color);
+  padding: 2rem;
+  border-radius: 0.25rem;
+  margin: 0.25rem auto;
 }
 
 .total-import {
   background-color: var(--main-bg-color);
   padding: 1rem;
   align-items: center;
+}
+
+.historical {
+  background-color: var(--main-bg-color);
+  padding: 2rem;
 }
 
 .data-historical {

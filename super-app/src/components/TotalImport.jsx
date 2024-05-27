@@ -5,11 +5,8 @@ const TotalImport = ({ category, totalAmount }) => {
     console.log(valor !== 0)
     return (
         valor === 0 ? null :
-        <div className="total-import">
-            <div>Total {getNameMonth()}</div>
-            <div>{formatterEuro.format(valor)}</div>   
-        </div>
-    )
+            <div className='total-import'>Gasto actual ({getNameMonth()}):  {formatterEuro.format(valor)}</div>   
+        )
 }
 
 export default TotalImport
