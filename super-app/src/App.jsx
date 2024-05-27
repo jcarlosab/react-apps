@@ -1,5 +1,12 @@
 import './App.css';
 import { useEffect, useState } from 'react';
+import { getNameMonth } from './utils/utils';
+import { loadFromLocalStorage, saveToLocalStorage } from './utils/localStorage';
+import Tabs from './components/Tabs';
+import InputValue from './components/InputValue';
+import ListExpenses from './components/ListExpenses';
+import TotalImport from './components/TotalImport';
+import HistoricalData from './components/HistoricalData';
 
 function App() {
   const [inputValue, setInputValue] = useState('');
@@ -11,42 +18,18 @@ function App() {
     others: 0,
   });
 
-  const formatterEuro = new Intl.NumberFormat("es-ES", {
-    style: "currency",
-    currency: "EUR",
-    minimumFractionDigits: 2,
-  });
-
-  const getMonth = () => {
-    const date = new Date();
-    const month = date.getMonth();
-    const nameMoths = [
-      'Enero',
-      'Febrero',
-      'Marzo',
-      'Abril',
-      'Mayo',
-      'Junio',
-      'Julio',
-      'Agosto',
-      'Septiembre',
-      'Octubre',
-      'Noviembre',
-      'Diciembre',
-    ];
-    return nameMoths[month];
-  };
-
   const handleAddAmount = () => {
     if (!inputValue) return;
     const date = new Date();
+
     const item = {
       id: listAmount.length + 1,
       date: date.toLocaleDateString(),
-      amount: formatterEuro.format(inputValue),
-      month: getMonth(),
+      amount: inputValue,
+      month: getNameMonth(),
       category: category
     };
+    
     setListAmount([...listAmount, item]);
     setTotalAmount((prev) => ({
       ...prev,
@@ -72,78 +55,32 @@ function App() {
   }
 
   useEffect(() => {
+    if (loadFromLocalStorage('listAmount').length !== 0) {
+      setTotalAmount(loadFromLocalStorage('totalAmount'));
+      setListAmount(loadFromLocalStorage('listAmount'));
+    }
     setCategory('market')
   }, [])
 
+  useEffect(() => {
+    saveToLocalStorage('listAmount', listAmount);
+    saveToLocalStorage('totalAmount', totalAmount);
+  }, [listAmount, totalAmount]);
+
   return (
-    <div>
-      <div className="tabs">
-        <div>
-          <button onClick={() => setCategory('market')}>Super</button>
-          <button onClick={() => setCategory('fuel')}>Gasoil</button>
-          <button onClick={() => setCategory('others')}>Otros</button>
-        </div>
-        <button>Historico (TODO)</button>
-      </div>
-
-      <div className="add-value">
-        <input
-          className='input-numbers'
-          type="text"
-          value={inputValue}
-          onKeyDown={(e) => e.key === 'Enter' && handleAddAmount()}
-          onChange={handleInputChange}
-          placeholder='0.00'
-        />
-        <button
-          className="btn-add"
-          onClick={handleAddAmount}
-          disabled={!inputValue}
-        >
-          Añadir
-        </button>
-      </div>
-
-      {listAmount.length === 0 || listAmount.find((item) => item.category === category) === undefined ? (
-        <div className="no-data">No hay datos</div>
-      ) : (
-        <div className="list-expenses">
-          <div className="expense">
-            <div>Fecha</div>
-            <div>Importe</div>
-            <div>Acción</div>
-          </div>
-          {
-          listAmount.map((result) => (
-            result.category === category &&
-            <div key={result.id} className="expense">
-              <div className="date">{result.date}</div>
-              <div className="import">{result.amount}</div>
-              <button
-                className="btn-delete"
-                onClick={() => handleDeleteAmount(result.id, result.amount, category)}
-              >
-                Delete
-              </button>
-            </div>
-            
-          ))}
-        </div>
-      )}
-
-      <div className="total-import">
-        <div>Total {getMonth()}</div>
-        { 
-          category === 'market' && totalAmount.market > 0 && <div>{formatterEuro.format(totalAmount.market)}</div>
-        }
-        { 
-          category === 'fuel' && totalAmount.fuel > 0 && <div>{formatterEuro.format(totalAmount.fuel)}</div>
-        }
-        { 
-          category === 'others' && totalAmount.others > 0 && <div>{formatterEuro.format(totalAmount.others)}</div>
-        }
-      </div>
-
+    <div> 
+      <Tabs category={category} setCategory={setCategory} />
+      {
+        category === 'historical' 
+        ? 
+          <HistoricalData/>
+        :
+        <>
+          <InputValue inputValue={inputValue} handleInputChange={handleInputChange} handleAddAmount={handleAddAmount} />
+          <ListExpenses category={category} listAmount={listAmount} handleDeleteAmount={handleDeleteAmount}/>
+          <TotalImport category={category} totalAmount={totalAmount} />
+        </>
+      }
     </div>
   );
 }
