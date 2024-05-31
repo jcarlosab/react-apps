@@ -26,16 +26,16 @@ export const getNameMonth = () => {
 
 // Get total amount of a category and month
 export const getTotalCategory = (list, category) => {
-    return list.reduce((acc, item) => {
+    return formatterEuro.format(list.reduce((acc, item) => {
       if (item.category === category) {
         return acc + parseFloat(item.amount);
       }
       return acc;
-    }, 0);
+    }, 0));
 }
 
 export const getTotalMonth = (list) => {
-  return list.reduce((acc, item) => acc + parseFloat(item.amount), 0);
+  return formatterEuro.format(list.reduce((acc, item) => acc + parseFloat(item.amount), 0));
 }
 
 export const getTotalYear = (list) => {

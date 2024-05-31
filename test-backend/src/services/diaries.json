@@ -1,0 +1,16 @@
+[
+    {
+        "id": 1,
+        "date": "2020-01-01",
+        "weather": "Sunny",
+        "visibility": "poor",
+        "comment": "Pretty scary flight, I'm glad I'm alive"
+    },
+    {
+        "id": 2,
+        "date": "2020-01-01",
+        "weather": "Sunny",
+        "visibility": "poor",
+        "comment": "Pretty scary flight, I'm glad I'm alive"
+    }
+]
