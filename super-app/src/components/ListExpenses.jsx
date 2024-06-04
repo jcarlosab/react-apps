@@ -3,7 +3,8 @@ import iconDelete from '../assets/delete.svg';
 
 const ListExpenses = ({listAmount, category, handleDeleteAmount}) => {
     return (
-        listAmount.length === 0 || listAmount.find((item) => item.category === category) === undefined ? (
+      listAmount
+      .find((result) => result.categoria === category) === undefined ? (
             <div className="no-data">No hay datos</div>
           ) : (
             <div className="table-expenses">
@@ -14,17 +15,18 @@ const ListExpenses = ({listAmount, category, handleDeleteAmount}) => {
               </div>
               <div className="table">
                 {
-                listAmount.map((result) => (
-                    result.category === category &&
+                listAmount
+                .filter((result) => result.categoria === category)
+                .map((result) => (
                     <div key={result.id}>
-                    <div className="date">{result.date}</div>
-                    <div className="import">{formatterEuro.format(result.amount)}</div>
-                    <button
-                        className="btn-delete"
-                        onClick={() => handleDeleteAmount(result.id, result.amount, category)}
-                    >
-                        <img src={iconDelete} alt='delete'/>
-                    </button>
+                      <div className="date">{result.fecha}</div>
+                      <div className="import">{formatterEuro.format(result.importe)}</div>
+                      <button
+                          className="btn-delete"
+                          onClick={() => handleDeleteAmount(result.id)}
+                      >
+                          <img src={iconDelete} alt='delete'/>
+                      </button>
                     </div>
                 ))}
               </div>
