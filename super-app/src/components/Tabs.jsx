@@ -1,5 +1,5 @@
-import iconHistoryWhite from '../assets/history-white.svg';
-import iconHistory from '../assets/history.svg';
+import iconHistoryWhite from '../assets/history-white.svg'
+import iconHistory from '../assets/history.svg'
 
 const Tabs = ({ category, setCategory }) => {
     return (

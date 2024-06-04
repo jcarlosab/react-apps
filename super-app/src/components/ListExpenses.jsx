@@ -1,11 +1,17 @@
-import  { formatterEuro } from '../utils/utils';
-import iconDelete from '../assets/delete.svg';
-import TotalImport from './TotalImport';
+import  { formatterEuro } from '../utils/utils'
+import iconDelete from '../assets/delete.svg'
+import TotalImport from './TotalImport'
 
 const ListExpenses = ({listAmount, category, handleDeleteAmount}) => {
+
+    const filteredList = listAmount
+      .filter((result) => result.category === category)
+      .filter((result) => result.month === new Date().getMonth())
+      .filter((result) => result.year === new Date().getFullYear())
+      .reverse()
+
     return (
-      listAmount
-      .find((result) => result.categoria === category) === undefined ? (
+      filteredList.length === 0 ? (
             <div className="no-data">No hay datos</div>
           ) : (
             <div className="table-expenses">
@@ -15,16 +21,11 @@ const ListExpenses = ({listAmount, category, handleDeleteAmount}) => {
                 <div></div>
               </div>
               <div className="table">
-                <TotalImport category={category} listAmount={listAmount} />
                 {
-                listAmount
-                .filter((result) => result.categoria === category)
-                .filter((result) => result.mes === new Date().getMonth())
-                .filter((result) => result.año === new Date().getFullYear())
-                .map((result) => (
+                filteredList.map((result) => (
                     <div key={result.id}>
-                      <div className="date">{result.fecha}</div>
-                      <div className="import">{formatterEuro.format(result.importe)}</div>
+                      <div className="date">{result.fdate}</div>
+                      <div className="import">{formatterEuro.format(result.amount)}</div>
                       <button
                           className="btn-delete"
                           onClick={() => handleDeleteAmount(result.id)}
@@ -33,6 +34,7 @@ const ListExpenses = ({listAmount, category, handleDeleteAmount}) => {
                       </button>
                     </div>
                 ))}
+                <TotalImport category={category} listAmount={listAmount} />
               </div>
             </div>
         )

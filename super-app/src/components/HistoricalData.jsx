@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
-import { getTotalAmountByCategory } from '../db/database';
-import { formatterEuro, getNameMonth } from '../utils/utils';
+import { useEffect, useState } from 'react'
+import { getTotalAmountByCategory } from '../db/database'
+import { formatterEuro, getNameMonth } from '../utils/utils'
 
 const HistoricalData = () => {
     const [results, setResults] = useState([])
@@ -31,7 +31,7 @@ const HistoricalData = () => {
                 <div className='table'>
                 {results.map((result, index) => (
                     <div key={index}>
-                        <div>{getNameMonth(result.Mes)} ( {result.Anno} )</div>
+                        <div>{getNameMonth(result.Month)} ( {result.Year} )</div>
                         <div>{formatterEuro.format(result.Super)}</div>
                         <div>{formatterEuro.format(result.Gasoil)}</div>
                         <div>{formatterEuro.format(result.Otros)}</div>

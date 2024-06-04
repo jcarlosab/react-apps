@@ -17,7 +17,7 @@ function App() {
 
     const item = {
       id: parseInt(Date.now() * Math.random()),
-      date: date.toLocaleDateString(),
+      fdate: date.toLocaleDateString(),
       amount: parseFloat(inputValue),
       month: date.getMonth(),
       year: date.getFullYear(),
@@ -80,7 +80,7 @@ function App() {
         </>
       }
     </div>
-  );
+  )
 }
 
 export default App

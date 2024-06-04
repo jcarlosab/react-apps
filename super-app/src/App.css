@@ -74,7 +74,7 @@
 
 .table {
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   background-color: var(--main-bg-color);
   padding: 2rem;
   border-radius: 0.25rem;
