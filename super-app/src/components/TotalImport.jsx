@@ -14,7 +14,7 @@ const TotalImport = ({ category, listAmount }) => {
     const totalCategory = category === 'market' ? totalAmount.market : category === 'fuel' ? totalAmount.fuel : category === 'others' ? totalAmount.others : 0;
     return (
         totalCategory === 0 ? null :
-        <div className='total-import'>Gasto en {getNameMonth(month)}:  {formatterEuro.format(totalCategory)}</div>   
+        <div className='total-import'>Gasto en {getNameMonth(month)}:  <span className='import'>{formatterEuro.format(totalCategory)}</span></div>   
     )
 }
 

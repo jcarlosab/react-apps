@@ -41,7 +41,7 @@ const HistoricalData = () => {
                 </div>
             </div>
             :
-            <h1>No hay datos</h1>
+            <div className='no-data'>No hay datos</div>
         }
         </>
     )

@@ -1,5 +1,6 @@
 import  { formatterEuro } from '../utils/utils';
 import iconDelete from '../assets/delete.svg';
+import TotalImport from './TotalImport';
 
 const ListExpenses = ({listAmount, category, handleDeleteAmount}) => {
     return (
@@ -14,9 +15,12 @@ const ListExpenses = ({listAmount, category, handleDeleteAmount}) => {
                 <div></div>
               </div>
               <div className="table">
+                <TotalImport category={category} listAmount={listAmount} />
                 {
                 listAmount
                 .filter((result) => result.categoria === category)
+                .filter((result) => result.mes === new Date().getMonth())
+                .filter((result) => result.año === new Date().getFullYear())
                 .map((result) => (
                     <div key={result.id}>
                       <div className="date">{result.fecha}</div>

@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react'
 import Tabs from './components/Tabs'
 import InputValue from './components/InputValue'
 import ListExpenses from './components/ListExpenses'
-import TotalImport from './components/TotalImport'
 import HistoricalData from './components/HistoricalData'
 import { getListAmount, addAmount, deleteAmount } from './db/database'
 
@@ -25,7 +24,11 @@ function App() {
       category: category
     }
 
-    setListAmount((prev) => [...prev, item])
+    setListAmount((prev) => {
+      const updatedList = [...prev, item]
+      return updatedList
+    })
+
     try {
       await addAmount(item)
     } catch (error) {
@@ -75,7 +78,6 @@ function App() {
         <>
           <InputValue inputValue={inputValue} handleInputChange={handleInputChange} handleAddAmount={handleAddAmount} />
           <ListExpenses category={category} listAmount={listAmount} handleDeleteAmount={handleDeleteAmount}/>
-          <TotalImport category={category} listAmount={listAmount} />
         </>
       }
     </div>

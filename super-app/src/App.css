@@ -81,6 +81,8 @@
 }
 
 .total-import {
+  border-top: 1px var(--text-color) solid;
+  margin-top: 2rem !important;
   background-color: var(--main-bg-color);
   padding: 1rem;
   align-items: center;
@@ -96,4 +98,8 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 0.5rem;
+}
+
+.import {
+  font-weight: bold;
 }
