@@ -50,6 +50,7 @@
 }
 
 .btn-delete {
+  padding: 0 0.3rem;
   background-color: var(--terceary-color);
 }
 

@@ -18,6 +18,6 @@ export const getNameMonth = (month) => {
     'Octubre',
     'Noviembre',
     'Diciembre',
-  ];
-  return nameMoths[month];
+  ]
+  return nameMoths[month]
 }

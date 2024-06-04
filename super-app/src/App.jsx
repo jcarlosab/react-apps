@@ -9,7 +9,7 @@ import { getListAmount, addAmount, deleteAmount } from './db/database'
 function App() {
   const [inputValue, setInputValue] = useState('')
   const [listAmount, setListAmount] = useState([])
-  const [category, setCategory] = useState('')
+  const [category, setCategory] = useState('market')
 
   const handleAddAmount = async () => {
     if (!inputValue) return;
@@ -55,7 +55,6 @@ function App() {
   }
 
   useEffect(() => {
-    setCategory('market')
     const fetchData = async () => {
       try {
         const data = await getListAmount()
