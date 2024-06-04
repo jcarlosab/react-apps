@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { getTotalAmountByCategory } from '../db/database';
-import { set } from 'date-fns';
 import { formatterEuro, getNameMonth } from '../utils/utils';
 
 const HistoricalData = () => {
