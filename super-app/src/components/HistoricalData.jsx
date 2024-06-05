@@ -20,24 +20,24 @@ const HistoricalData = () => {
         {
             results.length > 0 
             ? 
-            <div className='table-historical'>
-                <div className='header-table'>
+            <div className='table'>
+                <div className='table-row header'>
                     <div>Mes</div>
                     <div>Super</div>
                     <div>Gasoil</div>
                     <div>Otros</div>
                     <div>Total</div>
                 </div>
-                <div className='table'>
-                {results.map((result, index) => (
-                    <div key={index}>
-                        <div>{getNameMonth(result.Month)} ( {result.Year} )</div>
-                        <div>{formatterEuro.format(result.Super)}</div>
-                        <div>{formatterEuro.format(result.Gasoil)}</div>
-                        <div>{formatterEuro.format(result.Otros)}</div>
-                        <div>{formatterEuro.format(result.Total)}</div>
-                    </div>
-                ))}
+                <div className='table-content'>
+                    {results.map((result, index) => (
+                        <div className='table-row' key={index}>
+                            <div>{getNameMonth(result.Month)} ({result.Year})</div>
+                            <div>{formatterEuro.format(result.Super)}</div>
+                            <div>{formatterEuro.format(result.Gasoil)}</div>
+                            <div>{formatterEuro.format(result.Otros)}</div>
+                            <div className='import'>{formatterEuro.format(result.Total)}</div>
+                        </div>
+                    ))}
                 </div>
             </div>
             :
