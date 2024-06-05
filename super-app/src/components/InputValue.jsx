@@ -4,6 +4,7 @@ const InputValue = ({ inputValue, handleAddAmount, handleInputChange }) => {
         <input
           className='input-numbers'
           type="text"
+          inputMode="decimal"
           value={inputValue}
           onKeyDown={(e) => e.key === 'Enter' && handleAddAmount()}
           onChange={handleInputChange}
