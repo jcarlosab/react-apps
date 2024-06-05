@@ -5,7 +5,7 @@ const InputValue = ({ inputValue, handleAddAmount, handleInputChange }) => {
           className='input-numbers'
           type="text"
           inputMode="decimal"
-          value={inputValue}
+          value={inputValue.replace(',', '.')}
           onKeyDown={(e) => e.key === 'Enter' && handleAddAmount()}
           onChange={handleInputChange}
           placeholder='0.00'
