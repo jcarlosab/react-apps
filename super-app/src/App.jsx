@@ -50,7 +50,7 @@ function App() {
   }
 
   const handleInputChange = (event) => {
-    const regex = /^[0-9]*\.?[0-9]*$/
+    const regex = /^[0-9]*[.,]?[0-9]*$/
     if (regex.test(event.target.value)) {
       setInputValue(event.target.value)
     }
