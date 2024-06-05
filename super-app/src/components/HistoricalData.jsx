@@ -1,14 +1,18 @@
 import { useEffect, useState } from 'react'
 import { getTotalAmountByCategory } from '../db/database'
 import { formatterEuro, getNameMonth } from '../utils/utils'
+import Loader from './Loader'
 
 const HistoricalData = () => {
     const [results, setResults] = useState([])
+    const [isLoading, setIsLoading] = useState(false)
+
     useEffect(() => {
         const fetchData = async () => {
           try {
             const data = await getTotalAmountByCategory()
             setResults(data)
+            setIsLoading(true)
           } catch (error) {
             console.log(error)
           }
@@ -18,6 +22,8 @@ const HistoricalData = () => {
     return (
         <>
         {
+            isLoading 
+            ?
             results.length > 0 
             ? 
             <div className='table'>
@@ -42,6 +48,8 @@ const HistoricalData = () => {
             </div>
             :
             <div className='no-data'>No hay datos</div>
+            :
+            <Loader/>
         }
         </>
     )

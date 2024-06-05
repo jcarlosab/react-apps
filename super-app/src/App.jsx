@@ -5,11 +5,13 @@ import InputValue from './components/InputValue'
 import ListExpenses from './components/ListExpenses'
 import HistoricalData from './components/HistoricalData'
 import { getListAmount, addAmount, deleteAmount } from './db/database'
+import Loader from './components/Loader'
 
 function App() {
   const [inputValue, setInputValue] = useState('')
   const [listAmount, setListAmount] = useState([])
   const [category, setCategory] = useState('market')
+  const [isLoading, setIsLoading] = useState(false)
 
   const handleAddAmount = async () => {
     if (!inputValue) return;
@@ -59,6 +61,7 @@ function App() {
       try {
         const data = await getListAmount()
         setListAmount(data)
+        setIsLoading(true)
       } catch (error) {
         console.log(error)
       }
@@ -76,7 +79,13 @@ function App() {
         :
         <>
           <InputValue inputValue={inputValue} handleInputChange={handleInputChange} handleAddAmount={handleAddAmount} />
+          {
+          isLoading 
+          ?
           <ListExpenses category={category} listAmount={listAmount} handleDeleteAmount={handleDeleteAmount}/>
+          :
+          <Loader/>
+          }
         </>
       }
     </div>
