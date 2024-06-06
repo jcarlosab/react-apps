@@ -117,8 +117,8 @@
 .loader {
   position: absolute;
   width: 50px;
-  right: calc(50% - 50px);
-  top: calc(50% - 50px);
+  right: calc(50% - 25px);
+  top: calc(50% - 25px);
   aspect-ratio: 1;
   --c: no-repeat linear-gradient(#0A1128 0 0);
   background: 
