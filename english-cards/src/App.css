@@ -1,0 +1,133 @@
+:root {
+  --primary-color: #fffffA;
+  --error-color: #f8333c;
+  --correct-color: #4fba74;
+  --text-color: #0C2C31;
+}
+
+* {
+  box-sizing: border-box;
+
+}
+
+/* main */
+.main {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem;
+}
+
+/* ButtonBack */
+.btn-back {
+  display: flex;
+  align-items: center;
+}
+
+/* Counter */
+.counter {
+  display: flex;
+  justify-content: space-around;
+  margin: 2rem;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.counter div {
+  display: flex;
+  align-items: center;
+}
+
+.counter img {
+  width: 2rem;
+}
+
+.color-red {
+  color: var(--error-color);
+}
+
+
+/* Card */
+.card {
+  border: 1px solid #333;
+  margin: 0 1rem;
+  border-radius: .25rem;
+  padding: 1rem;
+  color: var(--text-color);
+}
+
+.btn-help {
+  position:absolute;
+  padding: 0 .25rem;
+}
+
+.word {
+  font-size: 3rem;
+  text-transform: capitalize;
+  text-align: center;
+}
+
+.bottom-text-card {
+  text-align: left;
+}
+
+/* InputWord */
+.input-word {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5rem;
+}
+
+.input-word input {
+  margin-right: 1rem;
+  font-size: large;
+  padding: 0.75rem;
+  appearance: textfield !important;
+  -webkit-appearance: textfield !important;
+  -moz-appearance:textfield !important;
+}
+
+/* Generales */
+
+.title-h1, .title-h2  {
+  text-align: center;
+}
+
+.title-h2 {
+  margin-top: 0;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.card {
+  transition: background-color 0.3s;
+}
+
+.card.green {
+  background-color: var(--correct-color);
+}
+
+.card.red {
+  background-color: var(--error-color);
+}
+
+.categories {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  border: 1px solid #000;
+  border-radius: .25rem;
+  margin: 0 1rem;
+  padding: 1rem 0;
+}
