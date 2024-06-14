@@ -56,8 +56,9 @@
 
 /* Card */
 .card {
+  width: 80%;
   border: 1px solid #333;
-  margin: 0 1rem;
+  margin: 0 auto;
   border-radius: .25rem;
   padding: 1rem;
   color: var(--text-color);
@@ -130,4 +131,5 @@
   border-radius: .25rem;
   margin: 0 1rem;
   padding: 1rem 0;
+  font-size: 1.5rem;
 }

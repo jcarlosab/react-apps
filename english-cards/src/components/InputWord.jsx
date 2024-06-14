@@ -14,7 +14,7 @@ const InputWord = ({input, handleValidate, handleChange, isInputDisabled}) => {
 			<input
 			type="text"
 			value={input}
-			onKeyDown={(e) => e.key === 'Enter' && handleValidate()}
+			onKeyDown={(e) => input != '' && e.key === 'Enter' && handleValidate()}
 			onChange={handleChange}
 			disabled={isInputDisabled}
 			placeholder='palabra...'
