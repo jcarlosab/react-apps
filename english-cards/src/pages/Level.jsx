@@ -17,20 +17,31 @@ const Level = () => {
 	const [isInputDisabled, setIsInputDisabled] = useState(false)
 	const currentWord = shuffledData[counter.correct] || {}
 	const { translation } = currentWord
+	const isCorrect = input !== '' && translation.find(word => word.toLowerCase() === input.toLowerCase()) !== undefined
 
 	const handleValidate = () => {
-		const isCorrect = input !== '' && translation.find(word => word.toLowerCase() === input.toLowerCase()) !== undefined
 		setBgColor(isCorrect ? 'green' : 'red')
 		setInput('')
 		setIsInputDisabled(true)
-		setTimeout(() => {
-			setCounter(prevCounter => ({
-				correct: prevCounter.correct + 1,
-				incorrect: isCorrect ? prevCounter.incorrect : prevCounter.incorrect + 1
-			}))
-			setBgColor('')
-			setIsInputDisabled(false)
-		}, 500)
+		if (isCorrect) {
+			setTimeout(() => {
+				setCounter(prevCounter => ({
+					correct: prevCounter.correct + 1,
+					incorrect: isCorrect ? prevCounter.incorrect : prevCounter.incorrect + 1
+				}))
+				setBgColor('')
+				setIsInputDisabled(false)
+			}, 500)
+		}
+	}
+
+	const handleNextWord = () => {
+		setCounter(prevCounter => ({
+			correct: prevCounter.correct + 1,
+			incorrect: isCorrect ? prevCounter.incorrect : prevCounter.incorrect + 1
+		}))
+		setBgColor('')
+		setIsInputDisabled(false)
 	}
 
 	const handleChange = (e) => {
@@ -52,7 +63,7 @@ const Level = () => {
 		<div className='main'>
 			<Header level={level}/>
 			<Counter counter={counter} />
-			<Card currentWord={currentWord} bgColor={bgColor} />
+			<Card currentWord={currentWord} bgColor={bgColor} handleNextWord={handleNextWord} />
 			<InputWord input={input} handleChange={handleChange} handleValidate={handleValidate} isInputDisabled={isInputDisabled} />
 		</div>
 	)
