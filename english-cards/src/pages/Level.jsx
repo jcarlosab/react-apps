@@ -1,18 +1,18 @@
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useLocation, useParams } from 'react-router-dom'
 import Card from '../components/Card'
 import InputWord from '../components/InputWord'
 import Counter from '../components/Counter'
 import Header from '../components/Header'
-import {getLevel, shuffle} from '../utils/utils'
+import {shuffle} from '../utils/utils'
 
 
 const Level = () => {
+	const location = useLocation()
+	const [words, setWords] = useState([])
 	const [input, setInput] = useState('')
 	const [counter,  setCounter] = useState({correct: 0, incorrect: 0})
 	const [bgColor, setBgColor] = useState('')
-	const { category } = useParams()
-	const { level, data = [] } = getLevel(category)
 	const [shuffledData, setShuffledData] = useState([])
 	const [isInputDisabled, setIsInputDisabled] = useState(false)
 	const currentWord = shuffledData[counter.correct] || {}
@@ -49,9 +49,13 @@ const Level = () => {
 	}
 
 	useEffect(() => {
-		const shuffled = shuffle(data)
+		setWords(location.state.words)
+	},[])
+
+	useEffect(() => {
+		const shuffled = shuffle(words)
 		setShuffledData(shuffled)
-	}, [data])
+	}, [words])
 
 	useEffect(() => {
 		if (counter.correct === 20) {
@@ -61,7 +65,7 @@ const Level = () => {
 
 	return (
 		<div className='main'>
-			<Header level={level}/>
+			<Header level={location.state.title}/>
 			<Counter counter={counter} />
 			<Card currentWord={currentWord} bgColor={bgColor} handleNextWord={handleNextWord} />
 			<InputWord input={input} handleChange={handleChange} handleValidate={handleValidate} isInputDisabled={isInputDisabled} />

@@ -9,7 +9,7 @@ const ButtonBack = ({level}) => {
 				>
 					<img src={arrow} alt='back' /> Categorías
 			</button>
-			<div>{level}</div>
+			<p>{level}</p>
 		</div>
 	)
 }

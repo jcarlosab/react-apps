@@ -1,5 +1,7 @@
 {
-    "data": [
+  "title": "Ropa",
+  "icon": "👕",
+  "words": [
       {
         "word": "camisa",
         "translation": ["shirt"],

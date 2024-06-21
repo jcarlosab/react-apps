@@ -1,10 +1,9 @@
-import { useEffect, useState } from 'react'
-import iconQuestion from '../assets/question_mark.svg'
+import React, { useEffect, useState } from 'react'
 
 const Card = ( {currentWord, bgColor, handleNextWord} ) => {
 	const { word, translation, description, type, tense } = currentWord
-	console.log(currentWord)
 	const [showInfo, setShowInfo] = useState(false)
+
 	const toggleInfo = () => {
 		setShowInfo(!showInfo)
 	}
@@ -15,11 +14,9 @@ const Card = ( {currentWord, bgColor, handleNextWord} ) => {
 
 	return (
 		<div className={`card ${bgColor}`}>
-			<button className='btn-help' onClick={toggleInfo}>
-				<img src={iconQuestion} alt='icon question' /> 
-			</button>
+			<div className='btn-help' onClick={toggleInfo}>?</div>
 			<p className="word">{word}</p>
-			{showInfo || bgColor == 'red' && (
+			{(showInfo || bgColor == 'red') && (
 				<div className="bottom-text-card">
 					{bgColor == 'red' &&
 						<p className="word">{translation}</p>

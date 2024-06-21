@@ -1,5 +1,7 @@
 {
-    "data": [
+  "title": "Fácil",
+  "icon": "🦐",
+  "words": [
       {
         "word": "casa",
         "translation": ["house", "home"],

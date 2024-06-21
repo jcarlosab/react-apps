@@ -1,14 +1,40 @@
 import { Link } from 'react-router-dom'
+import easy from '../levels/easy.json'
+import medium from '../levels/medium.json'
+import hard from '../levels/hard.json'
+import verbs from '../levels/verbs.json'
+import adjectives from '../levels/adjectives.json'
+import adverbs from '../levels/adverbs.json'
+import clothes from '../levels/clothes.json'
+import foods from '../levels/foods.json'
+import places from '../levels/places.json'
 
 const Categories = () => {
+	const levels = [
+		{ path: '/level/easy', data: easy },
+		{ path: '/level/medium', data: medium },
+		{ path: '/level/hard', data: hard },
+		{ path: '/level/verbs', data: verbs },
+		{ path: '/level/adjectives', data: adjectives },
+		{ path: '/level/adverbs', data: adverbs },
+		{ path: '/level/clothes', data: clothes },
+		{ path: '/level/foods', data: foods },
+		{ path: '/level/places', data: places }
+	]
+
 	return (
 		<div className='categories'>
-			<Link to="/level/a1">Nivel A1</Link>
-			<Link to="/level/a2">Nivel A2</Link>
-			<Link to="/level/b1">Nivel B1</Link>
-			<Link to="/level/b2">Nivel B2</Link>
-			<Link to="/level/c1">Nivel C1</Link>
-			<Link to="/level/c2">Nivel C2</Link>
+			{
+				levels.map((level, index) => (
+					<div key={index} className='category-card'>
+						<Link to={level.path} state={level.data}>
+							<p className='emoji'>{level.data.icon}</p>
+							<p>{level.data.title}</p>
+							<p className='cat-card-number'>{level.data.words.length}</p>
+						</Link>
+					</div>
+				))
+			}
 		</div>
 	)
 }

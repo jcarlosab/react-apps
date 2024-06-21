@@ -1,5 +1,7 @@
 {
-    "data": [
+    "title": "Verbos",
+    "icon": "🟥",
+    "words": [
         {
             "word": "estar",
             "translation": ["be"],

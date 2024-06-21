@@ -1,5 +1,7 @@
 {
-    "data": [
+    "title": "Lugares",
+    "icon": "🌴",
+    "words": [
         {
             "word": "museo",
             "translation": ["museum"],

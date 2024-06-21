@@ -1,5 +1,7 @@
 {
-    "data": [
+    "title": "Adjetivos",
+    "icon": "🟩",
+    "words": [
         {
             "word": "bonito",
             "translation": ["pretty", "beautiful"],
