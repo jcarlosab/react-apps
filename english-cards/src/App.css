@@ -178,8 +178,13 @@
   font-size: 4rem;
 }
 
+.card-icon {
+  display: flex;
+  place-content: center;
+}
+
 .cat-card-number {
-  font-size: 2rem;
+  font-size: 2.5rem;
 }
 
 @media (min-width: 600px) {

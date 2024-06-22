@@ -58,7 +58,7 @@ const Level = () => {
 	}, [words])
 
 	useEffect(() => {
-		if (counter.correct === 20) {
+		if (words.length != 0 && counter.correct === words.length) {
 			alert('Finish round')
 		}
 	},[counter])

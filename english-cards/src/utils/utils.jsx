@@ -4,10 +4,5 @@ export const shuffle = (array) => {
         const j = Math.floor(Math.random() * (i + 1));
         [array[i], array[j]] = [array[j], array[i]];
     }
-    return array.slice(0, 20)
+    return array
 }
-
-export const getLevel = (category) => {
-    return []
-}
-
