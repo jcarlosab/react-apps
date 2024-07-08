@@ -5,7 +5,7 @@ const TotalImport = ({ category, listAmount }) => {
     const month = date.getMonth()
 
     const totalAmount = listAmount.reduce((acc, item) => {
-        if (item.category === category) {
+        if (item.category === category && item.month == month) {
             acc[category] += item.amount;
         }
         return acc;
