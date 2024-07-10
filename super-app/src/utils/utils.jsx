@@ -21,3 +21,30 @@ export const getNameMonth = (month) => {
   ]
   return nameMoths[month]
 }
+
+export const groupByYear = (data) => {
+  const groupedData = {};
+
+  data.forEach(item => {
+      const year = item.Year
+
+      if (!groupedData[year]) {
+          groupedData[year] = {
+              Year: year,
+              data: []
+          };
+      }
+
+      const monthData = {
+          Month: item.Month,
+          Super: item.Super,
+          Gasoil: item.Gasoil,
+          Otros: item.Otros,
+          Total: item.Total
+      };
+
+      groupedData[year].data.push(monthData)
+  })
+
+  return Object.values(groupedData)
+}
