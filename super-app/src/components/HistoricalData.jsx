@@ -42,11 +42,11 @@ const HistoricalData = () => {
                 {results.map((result, index) => (
                     <div key={index} className={"accordion-item " + (activeIndex === index ? 'active' : 'inactive')}>
                         <div className="accordion-header" onClick={() => handleClick(index)}>
-                            <div>{result.Year}</div>
+                            <div className='bold-700'>{result.Year}</div>
                             <img src={activeIndex === index ? iconRemove : iconAdd} alt='icon action'/>
                         </div>
                         <div className="accordion-content">
-                            <div className='table'>
+                            <div className='table-historical'>
                                 <div className='table-row header'>
                                     <div>Mes</div>
                                     <div>Super</div>
