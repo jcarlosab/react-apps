@@ -1,9 +1,10 @@
 import Categories from '../components/Categories'
+import Header from '../components/Header'
 
 const Home = () => {
 	return (
 		<div className='main'>
-			<h1 className='title-h1'>English FlashCards</h1>
+			<Header/>
 			<Categories/>
 		</div>
 	)

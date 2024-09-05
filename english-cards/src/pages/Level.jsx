@@ -1,51 +1,71 @@
 import { useEffect, useState } from 'react'
-import { useLocation, useParams } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import Card from '../components/Card'
 import InputWord from '../components/InputWord'
 import Counter from '../components/Counter'
 import Header from '../components/Header'
+import Modal from '../components/Modal'
 import {shuffle} from '../utils/utils'
 
 
 const Level = () => {
 	const location = useLocation()
 	const [words, setWords] = useState([])
-	const [input, setInput] = useState('')
-	const [counter,  setCounter] = useState({correct: 0, incorrect: 0})
-	const [bgColor, setBgColor] = useState('')
+
 	const [shuffledData, setShuffledData] = useState([])
-	const [isInputDisabled, setIsInputDisabled] = useState(false)
-	const currentWord = shuffledData[counter.correct] || {}
+	
+	const [state, setState] = useState({
+		input: '',
+		counter: { correct: 0, incorrect: 0 },
+		bgColor: '',
+		isInputDisabled: false
+	})
+	const currentWord = shuffledData[state.counter.correct + state.counter.incorrect] || {}
 	const { translation } = currentWord
-	const isCorrect = input !== '' && translation.find(word => word.toLowerCase() === input.toLowerCase()) !== undefined
+
+
 
 	const handleValidate = () => {
-		setBgColor(isCorrect ? 'green' : 'red')
-		setInput('')
-		setIsInputDisabled(true)
+		const isCorrect = state.input !== '' && currentWord.translation.find(word => word.toLowerCase() === state.input.toLowerCase()) !== undefined;
+		setState(prevState => ({
+			...prevState,
+			bgColor: isCorrect ? 'green' : 'red',
+			input: '',
+			isInputDisabled: true,
+		}));
+
 		if (isCorrect) {
 			setTimeout(() => {
-				setCounter(prevCounter => ({
-					correct: prevCounter.correct + 1,
-					incorrect: isCorrect ? prevCounter.incorrect : prevCounter.incorrect + 1
-				}))
-				setBgColor('')
-				setIsInputDisabled(false)
-			}, 500)
+				setState(prevState => ({
+					...prevState,
+					bgColor: '',
+					isInputDisabled: false,
+					counter: {
+					correct: isCorrect ? prevState.counter.correct + 1 : prevState.counter.correct,
+					incorrect: !isCorrect ? prevState.counter.incorrect + 1 : prevState.counter.incorrect
+					}
+				}));
+			}, 500);
 		}
 	}
 
 	const handleNextWord = () => {
-		setCounter(prevCounter => ({
-			correct: prevCounter.correct + 1,
-			incorrect: isCorrect ? prevCounter.incorrect : prevCounter.incorrect + 1
-		}))
-		setBgColor('')
-		setIsInputDisabled(false)
+		setState(prevState => ({
+			...prevState,
+			counter: {
+				correct: !prevState.isCorrect ? prevState.counter.correct : prevState.counter.correct + 1,
+				incorrect: prevState.counter.incorrect + 1
+			},
+			bgColor: '',
+			isInputDisabled: false
+		}));
 	}
 
 	const handleChange = (e) => {
-		setInput(e.target.value)
+		setState(prevState => ({
+			...prevState,
+			input: e.target.value
+		}));
 	}
 
 	useEffect(() => {
@@ -58,17 +78,18 @@ const Level = () => {
 	}, [words])
 
 	useEffect(() => {
-		if (words.length != 0 && counter.correct === words.length) {
+		if (20 == state.counter.correct + state.counter.incorrect) {
 			alert('Finish round')
 		}
-	},[counter])
+	},[state.counter])
 
 	return (
-		<div className='main'>
-			<Header level={location.state.title}/>
-			<Counter counter={counter} />
-			<Card currentWord={currentWord} bgColor={bgColor} handleNextWord={handleNextWord} />
-			<InputWord input={input} handleChange={handleChange} handleValidate={handleValidate} isInputDisabled={isInputDisabled} />
+		<div className='main'>			
+			<Header/>
+			<Counter counter={state.counter} />
+			<Card currentWord={currentWord} bgColor={state.bgColor} handleNextWord={handleNextWord} />
+			<InputWord input={state.input} handleChange={handleChange} handleValidate={handleValidate} isInputDisabled={state.isInputDisabled} />
+			<Modal counter={state.counter}/>
 		</div>
 	)
 }

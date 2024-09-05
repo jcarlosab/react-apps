@@ -1,17 +1,9 @@
-import arrow from '../assets/arrow_back.svg'
-
-const ButtonBack = ({level}) => {
+const Header = () => {
 	return (
 		<div className='header'>
-			<button
-				className="btn-back"
-				onClick={() => window.history.back()}
-				>
-					<img src={arrow} alt='back' /> Categorías
-			</button>
-			<p>{level}</p>
+			<h1 className='title-h1'>English FlashCards</h1>
 		</div>
 	)
 }
 
-export default ButtonBack
+export default Header

@@ -1,7 +1,7 @@
 import iconCard from '../assets/style_48dp.svg'
 
 const Counter = ({counter}) => {
-	const value = 20 - counter.correct
+	const value = 20 - counter.correct - counter.incorrect
 
 	return (
 		<div className="counter">
