@@ -1,7 +1,8 @@
+/* eslint-disable react/prop-types */
 import iconCard from '../assets/style_48dp.svg'
 
-const Counter = ({counter}) => {
-	const value = 20 - counter.correct - counter.incorrect
+const Counter = ({ numberCards, counter }) => {
+	const value = numberCards - counter.correct - counter.incorrect
 
 	return (
 		<div className="counter">

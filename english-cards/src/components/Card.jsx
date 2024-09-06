@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react'
+/* eslint-disable react/prop-types */
+import { useEffect, useState } from 'react'
 
-const Card = ( {currentWord, bgColor, handleNextWord} ) => {
+const Card = ({ currentWord, bgColor, handleNextWord }) => {
 	const { word, translation, description, type, tense } = currentWord
 	const [showInfo, setShowInfo] = useState(false)
 

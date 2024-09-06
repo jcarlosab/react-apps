@@ -1,15 +1,26 @@
+/* eslint-disable react/prop-types */
 import iconRefresh from '../assets/refresh.svg'
 
-const Modal = ({counter}) => {
+const Modal = ({ numberCards, counter }) => {
 	
+    const handleTest = () => {
+		if (numberCards == counter.correct + counter.incorrect) {
+			return ' active'
+		} else {
+            return ' inactive'
+        } 
+	}
+
 	return (
-        <div className="modal">
+        <div className={'modal' + handleTest()}>
             <div className="modal-content">
                 <h2>Resultados</h2>
                 <p>Correctas: {counter.correct}</p>
                 <p>Incorrectas: {counter.incorrect}</p>
-                <p>{counter.correct * 100 / 20}%</p>
-                <button className="btn-modal"><img src={iconRefresh} alt='icon refresh'/></button>
+                <p>Ratio: {counter.correct * 100 / numberCards}%</p>
+                <div className='align-center'>
+                    <a href='/'><img src={iconRefresh} alt='icon refresh'/></a>
+                </div>
             </div>
         </div>
 	)

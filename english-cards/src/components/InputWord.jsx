@@ -1,6 +1,7 @@
+/* eslint-disable react/prop-types */
 import { useEffect } from "react"
 
-const InputWord = ({input, handleValidate, handleChange, isInputDisabled}) => {
+const InputWord = ({ input, handleValidate, handleChange, isInputDisabled }) => {
 	const focusInput = () => {
 		document.querySelector('input').focus()
 	}
