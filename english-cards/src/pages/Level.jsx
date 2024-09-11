@@ -5,6 +5,7 @@ import InputWord from '../components/InputWord'
 import Counter from '../components/Counter'
 import Header from '../components/Header'
 import Modal from '../components/Modal'
+import ButtonBack from '../components/ButtonBack'
 import {shuffle} from '../utils/utils'
 
 
@@ -67,10 +68,6 @@ const Level = () => {
 		setWords(shuffledWords)
 	},[])
 
-	useEffect(() => {
-		console.log(words)
-	}, [words])
-
 	return (
 		<div className='main'>			
 			<Header/>
@@ -78,6 +75,7 @@ const Level = () => {
 			<Card currentWord={currentWord} bgColor={state.bgColor} handleNextWord={handleNextWord} />
 			<InputWord input={state.input} handleChange={handleChange} handleValidate={handleValidate} isInputDisabled={state.isInputDisabled} />
 			<Modal numberCards={words.length} counter={state.counter}/>
+			<ButtonBack/>
 		</div>
 	)
 }

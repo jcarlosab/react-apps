@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import iconRefresh from '../assets/refresh.svg'
+import ButtonBack from './ButtonBack'
 
 const Modal = ({ numberCards, counter }) => {
 	
@@ -18,9 +18,7 @@ const Modal = ({ numberCards, counter }) => {
                 <p>Correctas: {counter.correct}</p>
                 <p>Incorrectas: {counter.incorrect}</p>
                 <p>Ratio: {counter.correct * 100 / numberCards}%</p>
-                <div className='align-center'>
-                    <a href='/'><img src={iconRefresh} alt='icon refresh'/></a>
-                </div>
+                <ButtonBack/>
             </div>
         </div>
 	)
