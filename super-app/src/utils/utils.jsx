@@ -4,21 +4,27 @@ export const formatterEuro = new Intl.NumberFormat("es-ES", {
   minimumFractionDigits: 2,
 })
 
+const months = [
+  'Enero',
+  'Febrero',
+  'Marzo',
+  'Abril',
+  'Mayo',
+  'Junio',
+  'Julio',
+  'Agosto',
+  'Septiembre',
+  'Octubre',
+  'Noviembre',
+  'Diciembre',
+]
+
+export const getAllMonths = () => {
+  return months
+}
+
 export const getNameMonth = (month) => {
-  const nameMoths = [
-    'Enero',
-    'Febrero',
-    'Marzo',
-    'Abril',
-    'Mayo',
-    'Junio',
-    'Julio',
-    'Agosto',
-    'Septiembre',
-    'Octubre',
-    'Noviembre',
-    'Diciembre',
-  ]
+  const nameMoths = months
   return nameMoths[month]
 }
 

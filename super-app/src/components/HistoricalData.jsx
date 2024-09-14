@@ -1,14 +1,18 @@
 import { useEffect, useState } from 'react'
 import { getTotalAmountByCategory } from '../db/database'
 import { formatterEuro, getNameMonth, groupByYear } from '../utils/utils'
+import Chart from 'chart.js/auto'
+import { CategoryScale } from 'chart.js'
 import Loader from './Loader'
 import iconAdd from '../assets/add.svg'
 import iconRemove from '../assets/remove.svg'
+import LineChart from './LineChart'
 
 const HistoricalData = () => {
     const [results, setResults] = useState([])
     const [isLoading, setIsLoading] = useState(false)
     const [activeIndex, setActiveIndex] = useState(0)
+    Chart.register(CategoryScale);
 
     const handleClick = (index) => {
         setActiveIndex(activeIndex === index ? null : index)
@@ -66,12 +70,14 @@ const HistoricalData = () => {
                                     ))}
                                 </div>
                             </div>
+                            <LineChart monthData={ result }/>
                         </div>
                     </div>
                 ))}
+                
             </div>
             :
-            <div className='no-data'>No hay datos</div>     
+            <div className='no-data'>No hay datos</div>    
         }
         </>
     )
